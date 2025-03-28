@@ -1,0 +1,284 @@
+#######################################################################################################################################################
+# 
+# Name: Nguyen Hong Nhung 
+# SID: 740098558
+# Exam Date: 28/3/20025
+# Module: Programming for Business Analytics (BEMM458_J_2_202425)
+# Github link for this assignment:  https://github.com/UniversityExeterBusinessSchool/practiceassessment-friday-Nhungnguyen05.git
+#
+# ######################################################################################################################################################
+# Instruction 1. Read the questions and instructions carefully and complete scripts.
+
+# Instruction 2. Only ethical and minimal use of AI is allowed. You might use AI to give advice on how to use a tool or programming language.  
+#                You must not use AI to create the code. You might make use of AI to aid debugging of the code.  
+#                You must indicate clearly how and where you have used AI.
+
+# Instruction 3. Copy the output of the code and insert it as a comment below your code e.g # OUTPUT (23,45)
+
+# Instruction 4. Ensure you provide comments for the code and the output to show contextual understanding.
+
+# Instruction 5. Upon completing this test, commit to Git, copy and paste your code into the word file and upload the saved file to ELE.
+#                There is a leeway on when you need to upload to ELE, however, you must commit to Git at 
+#                the end of your session.
+
+# ######################################################################################################################################################
+# Question 1 - Data Processing and Loops
+# You are given a string representing customer reviews. Use a for loop to process the text and count occurrences of specific keywords.
+# Your allocated keywords are determined by the first and last digit of your SID.
+# Count and store occurrences of each keyword in a dictionary called keyword_counts.
+ 
+customer_reviews = """The product is well-designed and user-friendly. However, I experienced some issues with durability. The customer service was helpful, 
+but I expected a faster response. The quality of the materials used is excellent. Overall, the purchase was satisfactory."""
+
+# Keywords dictionary
+keywords = {
+    0: 'user-friendly',
+    1: 'helpful',
+    2: 'durability',
+    3: 'response',
+    4: 'satisfactory',
+    5: 'quality',
+    6: 'service',
+    7: 'issues',
+    8: 'purchase',
+    9: 'materials'
+}
+
+# Write your code to process the text and count keyword occurrences
+customer_reviews = """The product is well-designed and user-friendly. However, I experienced some issues with durability. The customer service was helpful, 
+but I expected a faster response. The quality of the materials used is excellent. Overall, the purchase was satisfactory."""
+
+# Keywords dictionary
+keywords = {
+    0: 'user-friendly',
+    1: 'helpful',
+    2: 'durability',
+    3: 'response',
+    4: 'satisfactory',
+    5: 'quality',
+    6: 'service',
+    7: 'issues',
+    8: 'purchase',
+    9: 'materials'
+}
+
+# Determine allocated keywords based on the first and last digit of the SID (7 and 8)
+import random
+allocated_keys = [7, 8]
+allocated_keywords = [keywords[key] for key in allocated_keys]
+
+# Initialize keyword_counts dictionary for the allocated keywords
+keyword_counts = {keyword: 0 for keyword in allocated_keywords}
+
+# Process the text: split into words, remove punctuation, and convert to lowercase
+for word in customer_reviews.split():
+    # Remove punctuation (.,) that might be attached to the word
+    cleaned_word = word.strip(".,\n")
+    # Convert word to lowercase for case-insensitive matching
+    cleaned_word = cleaned_word.lower()
+    
+    # Check if the cleaned word matches any of our allocated keywords
+    for keyword in allocated_keywords:
+        if cleaned_word == keyword.lower():
+            keyword_counts[keyword] += 1
+
+print(keyword_counts)
+
+#Out put: {'issues': 1, 'purchase': 1}
+
+
+##########################################################################################################################################################
+
+# Question 2 - Business Metrics
+# Scenario - You work in an online retail company as a business analyst. Your manager wants weekly reports on financial performance, including:
+# Gross Profit Margin, Inventory Turnover, Customer Retention Rate (CRR), and Break-even Analysis. Implement Python functions 
+# that take relevant values as inputs and return the computed metric. Use the first two and last two digits of your ID number as input values.
+
+# Insert first two digits of ID number here: 74
+# Insert last two digits of ID number here: 58
+
+# Write your function for Gross Profit Margin
+
+# Write your function for Inventory Turnover
+
+# Write your function for Customer Retention Rate (CRR)
+
+# Write your function for Break-even Analysis
+
+# Call your functions here
+def gross_profit_margin(revenue, cost_of_goods_sold):
+    """
+    Calculate Gross Profit Margin as a percentage.
+    Formula: ((Revenue - Cost of Goods Sold) / Revenue) * 100
+    """
+    if revenue == 0:
+        return 0
+    return ((revenue - cost_of_goods_sold) / revenue) * 100
+
+def inventory_turnover(cost_of_goods_sold, average_inventory):
+    """
+    Calculate Inventory Turnover.
+    Formula: Cost of Goods Sold / Average Inventory
+    """
+    if average_inventory == 0:
+        return 0
+    return cost_of_goods_sold / average_inventory
+
+def customer_retention_rate(customers_start, customers_end, new_customers):
+    """
+    Calculate Customer Retention Rate (CRR) as a percentage.
+    Formula: ((Customers at End - New Customers) / Customers at Start) * 100
+    """
+    if customers_start == 0:
+        return 0
+    return ((customers_end - new_customers) / customers_start) * 100
+
+def break_even_analysis(fixed_costs, unit_price, variable_cost):
+    """
+    Calculate the break-even point in units.
+    Formula: Fixed Costs / (Unit Price - Variable Cost)
+    """
+    margin_per_unit = unit_price - variable_cost
+    if margin_per_unit <= 0:
+        return float('inf')  # break-even not possible
+    return fixed_costs / margin_per_unit
+
+# Use first two digits and last two digits of your ID (74 and 58) for demonstration:
+first_two = 74
+last_two = 58
+
+# 1. Gross Profit Margin:
+# For demonstration, assume revenue = first_two and cost_of_goods_sold = last_two.
+gpm = gross_profit_margin(first_two, last_two)
+print("Gross Profit Margin: {:.2f}%".format(gpm))
+
+# 2. Inventory Turnover:
+# Assume cost_of_goods_sold = first_two and average_inventory = last_two.
+it = inventory_turnover(first_two, last_two)
+print("Inventory Turnover: {:.2f}".format(it))
+
+# 3. Customer Retention Rate (CRR):
+# For demonstration, assume:
+#   customers_start = first_two,
+#   customers_end = last_two,
+#   new_customers = 10 (an arbitrary value for illustration)
+crr = customer_retention_rate(first_two, last_two, 10)
+print("Customer Retention Rate: {:.2f}%".format(crr))
+
+# 4. Break-even Analysis:
+# Assume:
+#   fixed_costs = first_two,
+#   unit_price = 100 (an example sales price),
+#   variable_cost = last_two.
+break_even_units = break_even_analysis(first_two, 100, last_two)
+print("Break-even Analysis (units): {:.2f}".format(break_even_units))
+
+# Output: Gross Profit Margin: 21.62%
+#Inventory Turnover: 1.28
+#Customer Retention Rate: 64.86%
+#Break-even Analysis (units): 1.76
+
+
+##########################################################################################################################################################
+
+# Question 3 - Forecasting and Regression
+# A logistics company has gathered data on delivery costs and shipment volumes. The table below provides different costs and their corresponding shipment volumes.
+# Develop a linear regression model and determine:
+# 1. The optimal delivery cost that maximizes profit
+# 2. The expected shipment volume when the cost is set at £68
+
+"""
+Delivery Cost (£)    Shipment Volume (Units)
+-------------------------------------------
+25                  500
+30                  480
+35                  450
+40                  420
+45                  400
+50                  370
+55                  340
+60                  310
+65                  290
+70                  250
+"""
+
+# Write your regression model code here
+import numpy as np 
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+
+# Data: Delivery costs and shipment volumes
+delivery_costs = np.array([25, 30, 35, 40, 45, 50, 55, 60, 65, 70]).reshape(-1, 1)
+shipment_volumes = np.array([500, 480, 450, 420, 400, 370, 340, 310, 290, 250])
+
+
+# Create and train the linear regression model
+model = LinearRegression()
+model.fit(delivery_costs, shipment_volumes)
+
+
+# 1. Predict the shipment volume when the delivery cost is £68
+cost_to_predict = np.array([[68]])
+predicted_volume = model.predict(cost_to_predict)
+print(f"Predicted shipment volume for delivery cost £68: {predicted_volume[0]:.2f} units")
+
+
+# 2. Determine the optimal delivery cost that maximizes profit
+# Assume profit = (delivery cost * shipment volume)
+profits = delivery_costs.flatten() * shipment_volumes
+optimal_index = np.argmax(profits)
+optimal_cost = delivery_costs[optimal_index][0]
+optimal_profit = profits[optimal_index]
+print(f"Optimal delivery cost: £{optimal_cost}, Maximum profit: £{optimal_profit:.2f}")
+
+
+# Plot the data and regression line
+plt.scatter(delivery_costs, shipment_volumes, color='blue', label='Data Points')
+plt.plot(delivery_costs, model.predict(delivery_costs), color='red', label='Regression Line')
+
+# Out put: Predicted shipment volume for delivery cost £68: 267.94 units
+#Optimal delivery cost: £65, Maximum profit: £18850.00
+
+##########################################################################################################################################################
+
+# Question 4 - Debugging and Data Visualization
+
+import rand as random
+import matplotlib.pyplt as plt
+
+# Generate 100 random numbers between 1 and student ID number
+your_ID=input("Enter your Student ID: ")
+max_value = int(your_ID)
+random_numbers = [random.randint(your_ID, max_valu) in range(100)]
+
+# Plotting the numbers in a histogram
+plt.histogram(random_number, bin=10, edgecolour='blue', alpha=0.7, colour='red')
+plt.title="Histogram of 100 Random Numbers"
+plt.xlabel="Value Range"
+plt.ylabel="Frequency"
+plt.grid("True")
+plt.show("plot")
+
+#debugging:
+import random
+import matplotlib.pyplot as plt
+
+# Generate 100 random numbers between 1 and the student ID number
+your_ID = input("Enter your Student ID: ")
+max_value = int(your_ID)  # Convert the input to an integer
+random_numbers = [random.randint(1, max_value) for _ in range(100)]  # Generate 100 random numbers
+
+# Plotting the numbers in a histogram
+plt.hist(random_numbers, bins=10, edgecolor='blue', alpha=0.7, color='red')
+plt.title("Histogram of 100 Random Numbers")
+plt.xlabel("Value Range")
+plt.ylabel("Frequency")
+plt.grid(True)
+plt.show()
+ #corrections made: change import rand as random to import random
+ # fix import matplotlib.pyplt as plt to import matplotlib.puplot as plt
+ # change plt.histogram to plt.hist
+ # change plt.show("plot") to plt.show()
+
+
